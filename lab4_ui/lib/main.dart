@@ -37,10 +37,10 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-  // Змінні для керування станом (Крок 4)
+  // Змінні для керування станом
   final TextEditingController _reviewController = TextEditingController();
   bool _isCompleted = false;
-  String _selectedGame = "Cyberpunk 2077"; // Вибраний елемент за замовчуванням
+  String _selectedGame = "Cyberpunk 2077"; 
 
   // Дані для списку
   final List<String> _games = [
@@ -52,6 +52,9 @@ class _MainScreenState extends State<MainScreen> {
 
   @override
   Widget build(BuildContext context) {
+    // ДОДАНО ПІСЛЯ РЕВ'Ю: константа для відступів, щоб уникнути дублювання коду
+    const spacer = SizedBox(height: 10);
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Game Diary'),
@@ -62,9 +65,8 @@ class _MainScreenState extends State<MainScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const Text('Ваш список ігор:', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-            const SizedBox(height: 10),
+            spacer, // Використання константи
             
-            // Тіло: ListView з кількома елементами-картками (Крок 2)
             Expanded(
               child: ListView.builder(
                 itemCount: _games.length,
@@ -74,7 +76,6 @@ class _MainScreenState extends State<MainScreen> {
                     child: ListTile(
                       title: Text(_games[index]),
                       onTap: () {
-                        // Оновлення стану при виборі елемента (Крок 4)
                         setState(() {
                           _selectedGame = _games[index]; 
                         });
@@ -84,9 +85,8 @@ class _MainScreenState extends State<MainScreen> {
                 },
               ),
             ),
-            const SizedBox(height: 10),
+            spacer, // Використання константи
             
-            // Текстове поле взаємодії (Крок 4)
             TextField(
               controller: _reviewController,
               decoration: const InputDecoration(
@@ -94,26 +94,23 @@ class _MainScreenState extends State<MainScreen> {
                 border: OutlineInputBorder(),
               ),
             ),
-            const SizedBox(height: 10),
+            spacer, // Використання константи
             
-            // Перемикач взаємодії (Крок 4)
             SwitchListTile(
               title: const Text('Гра пройдена?'),
               value: _isCompleted,
               onChanged: (bool value) {
                 setState(() {
-                  _isCompleted = value; // Збереження значення в стані
+                  _isCompleted = value; 
                 });
               },
             ),
-            const SizedBox(height: 10),
+            spacer, // Використання константи
             
-            // Кнопка переходу на другий екран (Крок 2)
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
                 onPressed: () {
-                  // Виклик Navigator.push з передачею даних через конструктор (Крок 3)
                   Navigator.push(
                     context,
                     MaterialPageRoute(
@@ -124,6 +121,9 @@ class _MainScreenState extends State<MainScreen> {
                       ),
                     ),
                   );
+                  
+                  // ДОДАНО ПІСЛЯ РЕВ'Ю: Очищення поля після переходу
+                  _reviewController.clear();
                 },
                 child: const Text('Детальніше'),
               ),
@@ -137,7 +137,6 @@ class _MainScreenState extends State<MainScreen> {
 
 // КРОК 3: Другий екран та навігація
 class SecondScreen extends StatelessWidget {
-  // Дані, що приймаються через конструктор
   final String gameTitle;
   final String review;
   final bool isCompleted;
@@ -152,7 +151,6 @@ class SecondScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // AppBar автоматично має стрілку "Назад" (Крок 3)
       appBar: AppBar(
         title: const Text('Деталі гри'),
       ),
@@ -170,12 +168,11 @@ class SecondScreen extends StatelessWidget {
             Text(review.isEmpty ? "Немає замітки" : review, style: const TextStyle(fontSize: 16)),
             const Spacer(),
             
-            // Альтернативна кнопка "Назад" (Крок 3)
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
                 onPressed: () {
-                  Navigator.pop(context); // Повернення назад
+                  Navigator.pop(context); 
                 },
                 child: const Text('Назад до списку'),
               ),
