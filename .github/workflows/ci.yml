@@ -9,6 +9,11 @@ on:
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
+    # Вказуємо папку, де знаходиться pubspec.yaml та код проєкту
+    defaults:
+      run:
+        working-directory: ./lab4_ui
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
