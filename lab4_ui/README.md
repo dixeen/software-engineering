@@ -1,17 +1,14 @@
-# lab4_ui
+# Game Diary
 
-A new Flutter project.
+Мобільний додаток для геймерів, який дозволяє вести облік пройдених ігор, зберігати нотатки та відстежувати статус проходження.
 
-## Getting Started
+## Архітектура
+Проєкт побудований на базі фреймворку **Flutter** (Dart).
+* **UI-шар:** Використовуються віджети Material Design з підтримкою темної теми. Головний екран (`MainScreen`) відповідає за відображення списку, другий екран (`SecondScreen`) — за деталі.
+* **State Management:** Використовується базовий `setState` для управління станом форми та списку.
+* **CI/CD:** Налаштовано GitHub Actions для автоматичного запуску лінтера (`flutter analyze`) та тестової збірки APK при кожному push.
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Learn Flutter](https://docs.flutter.dev/get-started/learn-flutter)
-- [Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Flutter learning resources](https://docs.flutter.dev/reference/learning-resources)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Інструкція зі збірки та запуску
+1. Склонуйте репозиторій та перейдіть у папку проєкту.
+2. Завантажте залежності командою: `flutter pub get`
+3. Запустіть додаток командою: `flutter run`
